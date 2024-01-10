@@ -1,0 +1,261 @@
+@import "variables";
+@import "modules";
+
+//------------responsive yapı
+
+@mixin mobile {
+  @media (max-width: 800px) {
+    @content;
+  }
+}
+@mixin laptop {
+  @media (min-width: 800px) and (max-width: 1400px) {
+    @content;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $bg-color;
+  font-family: $main-font;
+  overflow-x: hidden;
+}
+
+//---------------------header
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  img {
+    width: 100px;
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    @include mobile {
+      font-size: 15px;
+    }
+    a {
+      text-decoration: none;
+      color: $text-color;
+      &:hover {
+        color: crimson;
+        transition: all 0.4s;
+      }
+    }
+  }
+  #nav-left {
+    a {
+      padding: 0 20px;
+      border-right: 1px solid gray;
+      @include mobile {
+        font-size: 14px;
+      }
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+  #nav-right {
+    font-size: 15px;
+    gap: 30px;
+    padding: 0 20px;
+    @include mobile {
+      display: none;
+    }
+  }
+}
+
+//-----------karşılama alanı
+.hero {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px;
+  background: linear-gradient(rgb(215, 215, 215) 40%, $bg-color 40%);
+  @include mobile {
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 40px;
+  }
+  @include laptop {
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+  }
+}
+.slogan {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 70px;
+  max-width: 500px;
+  @include mobile {
+    gap: 20px;
+  }
+  h1 {
+    @extend %heading;
+    font-size: 40px;
+    @include mobile {
+      text-align: center;
+      font-size: 20px;
+    }
+  }
+  p {
+    @extend %p;
+    @include mobile {
+      font-size: 13px;
+    }
+  }
+  img {
+    width: 150px;
+    mix-blend-mode: darken;
+  }
+  h2 {
+    @extend %heading;
+    @include mobile {
+      text-align: center;
+      font-size: 20px;
+    }
+  }
+  button {
+    @extend %button;
+    background-color: crimson;
+
+    &:hover {
+      background-color: rgb(156, 6, 36);
+      transition: all 0.4s;
+    }
+  }
+}
+
+.images {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  &-banner {
+    max-width: 800px;
+    @include mobile {
+      max-width: 400px;
+    }
+  }
+  &-track {
+    max-width: 400px;
+    mix-blend-mode: darken;
+  }
+  p {
+    max-width: 500px;
+    text-align: center;
+    @include mobile {
+      text-align: center;
+      font-size: 13px;
+    }
+  }
+}
+
+//---------------------iç dizayn
+#interior {
+  @extend %design;
+  background-image: radial-gradient(rgb(0, 0, 0, 0.5), black),
+    url("/images/interior.jpg");
+  @include mobile {
+    h1 {
+      font-size: 30px;
+    }
+    p {
+      font-size: 18px;
+    }
+  }
+}
+
+#exterior {
+  @extend %design;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.3), black),
+    url(/images/exterior-4.jpg);
+}
+
+//---------------------------ARABALAR
+#cars-area {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px 0;
+  @include mobile {
+    h1 {
+      font-size: 25px;
+    }
+  }
+  .cars {
+    display: flex;
+    @include mobile {
+      flex-direction: column;
+    }
+    img {
+      align-items: center;
+      width: 300px;
+      mix-blend-mode: darken;
+    }
+    h3 {
+      align-items: center;
+    }
+  }
+
+  button {
+    @extend %button;
+    background-color: gray;
+    border: 1px solid black;
+    margin-top: 50px;
+    &:hover {
+      background-color: black;
+      color: white;
+    }
+  }
+}
+
+//------------------footer
+footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: black;
+  padding: 50px;
+  @include mobile {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  img {
+    width: 70px;
+    height: 80px;
+    mix-blend-mode: unset;
+  }
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color: white;
+    @include mobile {
+      align-items: center;
+    }
+    h2 {
+      @extend %heading;
+      color: white;
+    }
+    a {
+      color: white;
+      text-decoration: none;
+      transition: all 0.4s;
+      &:hover {
+        color: crimson;
+        transition: all 0.4s;
+      }
+    }
+  }
+}
